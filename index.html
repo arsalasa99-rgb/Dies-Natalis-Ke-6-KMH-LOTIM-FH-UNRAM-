@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dies Natalis KMH LOTIM FH UNRAM ke-6</title>
+    <meta name="description" content="Dokumentasi Resmi Dies Natalis KMH Lombok Timur Fakultas Hukum Universitas Mataram ke-6" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              navy: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                800: '#1e3a8a',
+                900: '#11385d', 
+                950: '#0a2339', 
+              },
+              primary: '#11385d',
+              accent: '#38bdf8',
+            },
+            animation: {
+              blob: 'blob 7s infinite',
+              float: 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'spin-slow': 'spin 12s linear infinite',
+              'bounce-slight': 'bounceSlight 2s infinite',
+              'ken-burns': 'kenBurns 20s ease-out infinite alternate',
+              'fade-in-up': 'fadeInUp 1s ease-out forwards',
+              'blur-in': 'blurIn 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards',
+              'tracking-in': 'trackingIn 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              bounceSlight: {
+                  '0%, 100%': { transform: 'translateY(-25%)', animationTimingFunction: 'cubic-bezier(0.8,0,1,1)' },
+                  '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0,0,0.2,1)' }
+              },
+              kenBurns: {
+                '0%': { transform: 'scale(1)' },
+                '100%': { transform: 'scale(1.2)' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              blurIn: {
+                '0%': { opacity: '0', filter: 'blur(10px)', transform: 'scale(0.9)' },
+                '100%': { opacity: '1', filter: 'blur(0)', transform: 'scale(1)' },
+              },
+              trackingIn: {
+                '0%': { letterSpacing: '-0.5em', opacity: '0' },
+                '40%': { opacity: '0.6' },
+                '100%': { letterSpacing: '0.1em', opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f5f9; }
+      ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+      
+      /* SCROLL REVEAL ANIMATION CLASSES */
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        will-change: opacity, transform;
+      }
+      
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Stagger delays for children */
+      .reveal.delay-100 { transition-delay: 0.1s; }
+      .reveal.delay-200 { transition-delay: 0.2s; }
+      .reveal.delay-300 { transition-delay: 0.3s; }
+      .reveal.delay-400 { transition-delay: 0.4s; }
+      .reveal.delay-500 { transition-delay: 0.5s; }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "vite": "https://esm.sh/vite@^7.3.1"
+  }
+}
+</script>
+<script>
+  // Global Intersection Observer for Scroll Animations
+  document.addEventListener("DOMContentLoaded", () => {
+    const setupObserver = () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Only animate once
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      // Find all reveal elements
+      document.querySelectorAll('.reveal:not(.active)').forEach((el) => {
+        observer.observe(el);
+      });
+    };
+
+    // Run initially
+    setupObserver();
+
+    // Run on DOM changes (for React)
+    const mutationObserver = new MutationObserver(() => {
+        setupObserver();
+    });
+    
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+  });
+</script>
+</head>
+  <body class="bg-slate-50 text-slate-800 antialiased font-sans overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
