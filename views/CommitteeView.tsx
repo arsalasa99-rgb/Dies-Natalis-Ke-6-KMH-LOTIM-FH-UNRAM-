@@ -82,7 +82,7 @@ const CommitteeView: React.FC = () => {
             <div className="flex justify-center mb-10 reveal">
                 <div className="relative">
                     <h3 className="text-2xl md:text-4xl font-extrabold text-white pb-4 relative z-10 text-center uppercase">
-                        Hierarki Kepengurusan
+                        Hierarki Kepanitiaan
                     </h3>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1.5 bg-sky-400 rounded-full"></div>
                 </div>
