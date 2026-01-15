@@ -7,68 +7,79 @@ interface SplashScreenProps {
 const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
-  const [isPageLoaded, setIsPageLoaded] = useState(false);
-  const [isMinTimeElapsed, setIsMinTimeElapsed] = useState(false);
+  const [loadingText, setLoadingText] = useState('INISIALISASI SISTEM...');
 
   useEffect(() => {
-    // 1. Minimum Display Time (4 Detik)
-    // Walaupun internet ngebut, user wajib nunggu 4 detik buat liat animasi
-    const timer = setTimeout(() => {
-      setIsMinTimeElapsed(true);
-    }, 4000); 
+    const MIN_DURATION = 7000; // Minimal 7 Detik
+    const startTime = Date.now();
 
-    // 2. Simulasi Progress Bar agar pas dengan durasi 4 detik
-    // Total 4000ms / 50ms interval = 80 langkah
-    // 100% / 80 langkah = ~1.25% per langkah
-    const progressInterval = setInterval(() => {
-      setLoadingProgress((prev) => {
-        // Mentok di 99% sampai kedua syarat (Load + Waktu) terpenuhi
-        if (prev >= 99) {
-          return 99; 
+    // Fungsi utilitas untuk mengecek status load gambar dalam DOM
+    const checkImagesReady = () => {
+        const images = Array.from(document.images);
+        // Anggap selesai jika tidak ada gambar atau semua gambar valid sudah complete
+        // img.complete bernilai true jika gambar selesai loading atau error
+        return images.every(img => img.complete);
+    };
+
+    const interval = setInterval(() => {
+      const elapsedTime = Date.now() - startTime;
+      
+      // Hitung progress berdasarkan waktu (Max 99% sebelum complete)
+      // Kita buat progressnya agak nonlinear biar terasa 'loading'
+      let calculatedProgress = (elapsedTime / MIN_DURATION) * 100;
+      
+      const isWindowLoaded = document.readyState === 'complete';
+      const areImagesLoaded = checkImagesReady();
+
+      // Logika Update Text agar terlihat "Live"
+      if (calculatedProgress < 20) {
+          setLoadingText('MENGHUBUNGKAN KE SERVER...');
+      } else if (calculatedProgress < 40) {
+          setLoadingText('MENGUNDUH STRUKTUR HALAMAN...');
+      } else if (calculatedProgress < 70) {
+          setLoadingText('MEMUAT ASET VISUAL & GALERI...');
+      } else if (!areImagesLoaded) {
+          setLoadingText('MENUNGGU RENDER GAMBAR...');
+      } else {
+          setLoadingText('FINALISASI KONFIGURASI...');
+      }
+
+      setLoadingProgress(prev => {
+        // Kondisi Selesai: Waktu habis DAN Window Load DAN Gambar Aman
+        if (elapsedTime >= MIN_DURATION && isWindowLoaded && areImagesLoaded) {
+            return 100;
         }
-        return prev + 1.25; // Naik pelan-pelan
+
+        // Jika belum selesai, progress mentok di 99%
+        // Gunakan Math.max agar tidak mundur
+        return Math.min(Math.max(prev, calculatedProgress), 99);
       });
-    }, 50);
 
-    // 3. Event Listener untuk Real Page Load
-    const handleLoad = () => {
-      setIsPageLoaded(true);
-    };
+    }, 50); // Update tiap 50ms untuk animasi smooth
 
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-    }
-
-    return () => {
-      clearTimeout(timer);
-      clearInterval(progressInterval);
-      window.removeEventListener('load', handleLoad);
-    };
+    return () => clearInterval(interval);
   }, []);
 
-  // 4. Cek Kelulusan (Harus Load SELESAI && Waktu MINIMAL habis)
+  // Efek ketika loading mencapai 100%
   useEffect(() => {
-    if (isPageLoaded && isMinTimeElapsed) {
-      // Finalize progress bar
-      setLoadingProgress(100);
+    if (loadingProgress >= 100) {
+      setLoadingText('AKSES DIBERIKAN');
       
-      // Tahan sebentar di 100% biar enak dilihat (500ms)
-      const exitTimer = setTimeout(() => {
-        setIsExiting(true); // Trigger animasi exit (naik ke atas)
+      // Tahan di 100% sebentar (800ms) untuk kepuasan visual
+      const exitDelay = setTimeout(() => {
+        setIsExiting(true);
         
-        // Tunggu animasi exit CSS selesai (1000ms) baru unmount component
-        const completeTimer = setTimeout(() => {
+        // Tunggu animasi exit CSS selesai (1000ms) baru unmount
+        const completeDelay = setTimeout(() => {
           onComplete();
         }, 1000);
 
-        return () => clearTimeout(completeTimer);
-      }, 500);
+        return () => clearTimeout(completeDelay);
+      }, 800);
 
-      return () => clearTimeout(exitTimer);
+      return () => clearTimeout(exitDelay);
     }
-  }, [isPageLoaded, isMinTimeElapsed, onComplete]);
+  }, [loadingProgress, onComplete]);
 
   return (
     <div 
@@ -150,11 +161,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete }) => {
                 ></div>
             </div>
             
-            <div className="text-[10px] text-sky-200/50 font-mono tracking-widest animate-pulse h-4">
-                {loadingProgress < 100 
-                    ? `MEMUAT DATA... ${Math.round(loadingProgress)}%` 
-                    : 'AKSES DIBERIKAN'
-                }
+            {/* Dynamic Status Text */}
+            <div className="text-[10px] text-sky-200/50 font-mono tracking-widest animate-pulse h-4 uppercase">
+                {loadingText} {Math.round(loadingProgress)}%
             </div>
         </div>
 

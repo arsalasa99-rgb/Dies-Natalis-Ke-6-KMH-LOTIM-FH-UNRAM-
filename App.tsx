@@ -9,17 +9,29 @@ import GalleryView from './views/GalleryView';
 import CommitteeView from './views/CommitteeView';
 import ContactView from './views/ContactView';
 import RABView from './views/RABView';
+import DonationModal from './components/DonationModal'; // New Import
 import { View, Activity } from './types';
-import { Instagram } from 'lucide-react';
+import { Instagram, Heart, X } from 'lucide-react';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [currentView, setCurrentView] = useState<View>(View.HOME);
   const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
+  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false); // Modal State
+  const [showFab, setShowFab] = useState(false); // FAB Animation State
+  const [isFabClosed, setIsFabClosed] = useState(false); // User Closed FAB State
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentView]);
+
+  // Show FAB after splash or delay
+  useEffect(() => {
+    if (!showSplash) {
+        const timer = setTimeout(() => setShowFab(true), 1500); // Delay sedikit lebih lama agar tidak kaget
+        return () => clearTimeout(timer);
+    }
+  }, [showSplash]);
 
   const handleNavigate = (view: View) => {
     setCurrentView(view);
@@ -55,7 +67,8 @@ function App() {
       case View.CONTACT:
         return <ContactView />;
       case View.RAB:
-        return <RABView />;
+        // Pass the open modal function to RAB View
+        return <RABView onOpenDonate={() => setIsDonateModalOpen(true)} />;
       default:
         return <HomeView onNavigate={handleNavigate} />;
     }
@@ -99,6 +112,44 @@ function App() {
           {renderView()}
         </div>
       </main>
+
+      {/* GLOBAL DONATION MODAL */}
+      {isDonateModalOpen && <DonationModal onClose={() => setIsDonateModalOpen(false)} />}
+
+      {/* GLOBAL FLOATING DONATE BUTTON (FAB) */}
+      <div 
+        className={`fixed z-50 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]
+            ${showFab && !isFabClosed ? 'bottom-6 right-4 md:bottom-10 md:right-10 opacity-100 scale-100' : '-bottom-24 right-4 opacity-0 scale-75'}
+        `}
+      >
+          {/* Close Button (X) */}
+          <button
+            onClick={() => setIsFabClosed(true)}
+            className="absolute -top-3 -left-3 w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center shadow-lg border-2 border-navy-950 z-20 animate-bounce-slight"
+            aria-label="Tutup tombol donasi"
+          >
+             <X size={14} strokeWidth={3} />
+          </button>
+
+          {/* Main Action Button */}
+          <button
+            onClick={() => setIsDonateModalOpen(true)}
+            className="group flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 text-white rounded-full shadow-[0_0_20px_rgba(245,158,11,0.6)] border border-white/20 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(245,158,11,0.8)]"
+          >
+              <div className="relative">
+                  <Heart size={24} className="fill-white animate-pulse-slow drop-shadow-md" />
+                  {/* Notification Dot */}
+                  <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600 border border-white"></span>
+                  </span>
+              </div>
+              <div className="flex flex-col items-start">
+                  <span className="font-black text-xs md:text-sm uppercase tracking-wider leading-none mb-0.5">Dukung</span>
+                  <span className="font-medium text-[10px] md:text-xs opacity-90 leading-none">Acara Kami</span>
+              </div>
+          </button>
+      </div>
 
       {/* Footer */}
       <footer className="relative z-10 bg-black/20 backdrop-blur-xl text-white py-12 border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.3)]">

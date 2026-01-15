@@ -245,7 +245,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
   { id: 'dn5-6', type: 'image', url: 'https://i.ibb.co.com/0yHtHcVF/peresean.jpg', caption: 'Peresean', category: 'DN5' },
 ];
 
-// UPDATED TIMELINE DATA (Full Sequence)
+// UPDATED TIMELINE DATA (Full Sequence including Perlengkapan & Keamanan)
 export const TIMELINE_EVENTS: TimelineEvent[] = [
   // --- 2025: Pembentukan & Perencanaan (PRE-PHASE) ---
   { 
@@ -285,19 +285,19 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             focus: 'Tari: 60%\nDirigen: 60%\nMc formal: 60%\nPresean: 50%\nMc non formal: 50%'
         },
         {
-            division: 'Divisi Media',
-            target: 'Identitas visual siap',
-            focus: 'Revisi logo dan pengumpulan foto untuk kebutuhan feed Instagram.'
-        },
-        {
             division: 'Divisi Perlengkapan',
-            target: 'Data kebutuhan & RAB awal selesai',
-            focus: 'Penyusunan daftar barang, penentuan vendor, dan penyusunan RAB.'
+            target: 'Perencanaan & Survei',
+            focus: 'Briefing internal tim, penyusunan RAB, koordinasi list kebutuhan barang (panggung, sound) & mulai survei vendor.'
         },
         {
             division: 'Divisi Keamanan',
-            target: 'Timeline keamanan tersusun',
-            focus: 'Penyusunan sistem pengamanan dan pembagian shift.'
+            target: 'Pengamanan Awal',
+            focus: 'Menyiapkan lokasi latihan (khususnya Tugu) & menjaga keamanan selama latihan berlangsung.'
+        },
+        {
+            division: 'Divisi Media',
+            target: 'Identitas visual siap',
+            focus: 'Revisi logo dan pengumpulan foto untuk kebutuhan feed Instagram.'
         },
         {
             division: 'Divisi Humas',
@@ -315,6 +315,16 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             division: 'Divisi Acara',
             target: 'Latihan 3x (2 Tugu, 1 Rumah)',
             focus: 'Tari: 80%\nDirigen: 80%\nMc formal: 80%\nPresean: 60%\nMc non formal: 60%'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'Finalisasi Inventaris',
+            focus: 'Finalisasi daftar barang (inventaris) & mencari 2-3 opsi vendor sebagai perbandingan harga.'
+        },
+        {
+            division: 'Divisi Keamanan',
+            target: 'Pengamanan Latihan',
+            focus: 'Membantu mengarahkan talent & memastikan konsumsi talent aman.'
         },
         {
             division: 'Divisi Humas',
@@ -339,14 +349,14 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             focus: 'Tari: 100%\nDirigen: 100%\nMc formal: 100%\nPresean: 70%\nMc non formal: 70%'
         },
         {
+            division: 'Divisi Perlengkapan',
+            target: 'Booking & Anggaran',
+            focus: 'Pengajuan anggaran ke bendahara & booking tempat/venue utama jika belum.'
+        },
+        {
             division: 'Divisi Humas',
             target: 'Minimal 3 sponsor',
             focus: 'Finalisasi kesepakatan sponsor (Akhir Januari).'
-        },
-        {
-            division: 'Divisi Perlengkapan',
-            target: 'Kesiapan logistik',
-            focus: 'Konfirmasi vendor dan kesiapan barang (Akhir Januari).'
         }
     ]
   },
@@ -367,6 +377,16 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             division: 'Divisi Acara',
             target: 'Persiapan Seminar & Gladi',
             focus: 'Gladi kotor & bersih talent.\nTari: 100%\nDirigen: 100%\nMc formal: 100%\nPresean: 80%\nMc non formal: 80%'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'DP Vendor Besar',
+            focus: 'Pembayaran DP untuk Gedung, Sound, Lighting, & Stage.'
+        },
+        {
+            division: 'Divisi Keamanan',
+            target: 'Pengamanan Seminar',
+            focus: 'Menjaga kondusifitas area seminar & parkir.'
         },
         {
             division: 'Divisi Media',
@@ -393,6 +413,11 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             focus: 'Tari: 50% (Prep DN)\nDirigen: 100%\nMc formal: 70% (Prep DN)\nPresean: 80%\nMc non formal: 80%'
         },
         {
+            division: 'Divisi Perlengkapan',
+            target: 'Logistik Kecil',
+            focus: 'Pendataan perlengkapan habis pakai (lakban, kabel, baterai, dll).'
+        },
+        {
             division: 'Divisi Media',
             target: 'Awareness publik meningkat',
             focus: 'Publikasi Coming Soon.'
@@ -411,6 +436,16 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             focus: 'Persiapan sebelum latihan harian.\nTari: 60%\nDirigen: 100%\nMc formal: 80%\nPresean: 90%\nMc non formal: 90%'
         },
         {
+            division: 'Divisi Perlengkapan',
+            target: 'Site Visit & Layout',
+            focus: 'Survei lokasi untuk tata letak panggung, kursi, dan jalur kabel.'
+        },
+        {
+            division: 'Divisi Keamanan',
+            target: 'Mapping Lokasi',
+            focus: 'Pemetaan titik rawan, strategi keamanan venue, & memastikan konsumsi talent aman.'
+        },
+        {
             division: 'Divisi Konsumsi',
             target: 'Finalisasi Vendor',
             focus: 'Survei lanjutan dan penetapan penyedia konsumsi (16-28 Februari).'
@@ -427,6 +462,16 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             division: 'Divisi Acara',
             target: 'Latihan Setiap Hari',
             focus: 'Jam 15.00 - 17.45.\nTari: 70%\nDirigen: 100%\nMc formal: 90%\nPresean: 95%\nMc non formal: 95%'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'Perizinan Alat',
+            focus: 'Koordinasi perizinan peminjaman alat milik organisasi/pihak kampus.'
+        },
+        {
+            division: 'Divisi Keamanan',
+            target: 'Pengamanan Rutin',
+            focus: 'Menjaga keamanan selama latihan harian berlangsung.'
         }
     ]
   },
@@ -441,6 +486,11 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             division: 'Divisi Acara',
             target: 'Pemantapan Total',
             focus: 'Latihan Setiap Hari.\nTari: 80%\nDirigen: 100%\nMc formal: 100%\nPresean: 100%\nMc non formal: 100%'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'Final Check Vendor',
+            focus: 'Memastikan semua vendor tidak ada kendala jadwal & cek daftar barang.'
         }
     ]
   },
@@ -454,6 +504,16 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             division: 'Divisi Acara',
             target: 'Finalisasi Performance',
             focus: 'Latihan Setiap Hari.\nTari: 90%\nDirigen: 100%\nMc formal: 100%\nPresean: 100%\nMc non formal: 100%'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'Denah Loading',
+            focus: 'Pengadaan perlengkapan kecil & pembuatan denah loading barang.'
+        },
+        {
+            division: 'Divisi Keamanan',
+            target: 'Titik Sponsorship',
+            focus: 'Menentukan dan mengamankan tempat menaruh sponsorship yang strategis.'
         }
     ]
   },
@@ -480,11 +540,16 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
             division: 'Divisi Acara',
             target: 'Minggu Tenang (Pulang Kampung)',
             focus: 'Panitia/Talent istirahat (Libur Lebaran).'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'Technical Meeting',
+            focus: 'Rapat koordinasi teknis sinkronisasi alat dengan rundown acara (16-22 Maret).'
         }
     ]
   },
   
-  // --- MENJELANG ACARA ---
+  // --- MENJELANG ACARA (FULL TEAM FINALIZATION) ---
   { 
     id: 't-pre-event-final', 
     date: '24 - 31 Maret 2026', 
@@ -492,13 +557,33 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     items: [
         {
             division: 'Divisi Acara',
-            target: 'Kumpul Full Team (Mataram)',
-            focus: 'Tanggal 24 semua sudah di Mataram.\nGladi Kotor & Gladi Bersih.\nTarget: EKSEKUSI 100%++'
+            target: 'Finalisasi Rundown & Gladi',
+            focus: 'Gladi Kotor & Resik (GR). Briefing akhir seluruh pengisi acara & MC. Sinkronisasi total dengan perlengkapan.'
+        },
+        {
+            division: 'Divisi Perlengkapan',
+            target: 'Loading & Setting 100%',
+            focus: 'H-3: Angkut alat. H-2: Dekorasi & Panggung. H-1: Cek Sound, Lighting, Genset & Kebersihan venue.'
+        },
+        {
+            division: 'Divisi Konsumsi',
+            target: 'Kesiapan Logistik',
+            focus: 'Final fix pesanan katering/snack. Ploting tim distribusi konsumsi panitia, talent, dan tamu VIP.'
+        },
+        {
+            division: 'Divisi Humas',
+            target: 'Protokoler & Tamu',
+            focus: 'Rekap final kehadiran tamu VIP (RSVP). Briefing penerima tamu (LO) dan alur penyambutan.'
+        },
+        {
+            division: 'Divisi Media',
+            target: 'Dokumentasi & Hype',
+            focus: 'Cek peralatan kamera/memori. Rilis konten H-1. Briefing spot pengambilan gambar saat acara.'
         },
         {
             division: 'Divisi Keamanan',
-            target: 'Kesiapan pengamanan penuh',
-            focus: 'Kehadiran lebih awal dan koordinasi lapangan.'
+            target: 'Sterilisasi Area',
+            focus: 'Mapping pos jaga final. Sterilisasi area panggung & VIP. Manajemen parkir dan jalur evakuasi.'
         }
     ]
   },
